@@ -10,12 +10,12 @@ services:
 env:
   - distribution: ubuntu
     version: 16.04
-    ROLE_DIR: /etc/ansible/roles/ansible-guacamole-server
-    TEST_DIR: /etc/ansible/roles/ansible-guacamole-server/tests
+    ROLE_DIR: /etc/ansible/roles/hotspot-ansible
+    TEST_DIR: /etc/ansible/roles/hotspot-ansible/tests
   - distribution: ubuntu
     version: 14.04
-    ROLE_DIR: /etc/ansible/roles/ansible-guacamole-server
-    TEST_DIR: /etc/ansible/roles/ansible-guacamole-server/tests
+    ROLE_DIR: /etc/ansible/roles/hotspot-ansible
+    TEST_DIR: /etc/ansible/roles/hotspot-ansible/tests
 
 before_install:
   - 'sudo docker run --privileged --cap-add SYS_PTRACE --detach --interactive --tty --name=test_dummy --volume="$PWD":"$ROLE_DIR":rw cyverse/ansible-test:latest-"$distribution"-"$version" bash'
