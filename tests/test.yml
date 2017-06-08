@@ -1,0 +1,7 @@
+---
+
+- name: Playbook to install hotspot tool
+  hosts: localhost
+  remote_user: root
+  roles:
+    - hotspot-ansible
