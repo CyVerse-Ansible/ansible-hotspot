@@ -8,21 +8,20 @@ services:
   - docker
 
 env:
+  - distribution: centos
+    version: 7
+  - distribution: centos
+    version: 6
   - distribution: ubuntu
     version: 16.04
-    ROLE_DIR: /etc/ansible/roles/hotspot-ansible
-    TEST_DIR: /etc/ansible/roles/hotspot-ansible/tests
   - distribution: ubuntu
     version: 14.04
-    ROLE_DIR: /etc/ansible/roles/hotspot-ansible
-    TEST_DIR: /etc/ansible/roles/hotspot-ansible/tests
 
 before_install:
-  - 'sudo docker run --privileged --cap-add SYS_PTRACE --detach --interactive --tty --name=test_dummy --volume="$PWD":"$ROLE_DIR":rw cyverse/ansible-test:latest-"$distribution"-"$version" bash'
+  - 'sudo docker run -it --name=test_dummy --privileged --detach --volume="${PWD}":/etc/ansible/roles/hotspot-ansible:rw cyverse/ansible-test:latest-${distribution}-${version} bash'
 
 script:
-  # 1. Syntax check
-  - 'sudo docker exec test_dummy ansible-playbook --syntax-check --inventory-file="$TEST_DIR"/inventory "$TEST_DIR"/test.yml'
-
-  # 2. Run playbook to execute role
-  - 'sudo docker exec test_dummy ansible-playbook --connection=local --inventory-file="$TEST_DIR"/inventory "$TEST_DIR"/test.yml'
+  # Syntax check
+  - sudo docker exec test_dummy ansible-playbook /etc/ansible/roles/hotspot-ansible/tests/test.yml -i tests/inventory --syntax-check
+  # Run
+  - sudo docker exec test_dummy ansible-playbook /etc/ansible/roles/hotspot-ansible/tests/test.yml -i tests/inventory
