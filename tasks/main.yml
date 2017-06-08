@@ -1,0 +1,23 @@
+---
+
+- name: Gather OS-specific vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "{{ ansible_distribution }}.yml"
+
+- name: Download tar.bz2
+  get_url:
+    url: "https://github.com/rthurman/hotspot/archive/v{{ VERSION }}.zip"
+    dest: "/tmp/hotspot.zip"
+
+- name: Unzip the package to user home directory
+  unarchive:
+    src: "/tmp/hotspot.zip"
+    dest: "/home/{{ ATMOUSERNAME }}"
+    remote_src: yes
+
+- name: Remove temporary files
+  file:
+    state: absent
+    path: "/tmp/hotspot.zip"
