@@ -1,4 +1,8 @@
 ---
+- name: Fail if ATMOUSERNAME is undefined
+  fail:
+    msg: "ATMOUSERNAME is undefined but required for this role."
+  when: ATMOUSERNAME is not defined
 
 - name: Download tar.bz2
   get_url:
