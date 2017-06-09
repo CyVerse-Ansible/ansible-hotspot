@@ -11,3 +11,4 @@ A description of the settable variables for this role should go here, including 
 | Variable                | Required | Default | Choices                   | Comments                                   |
 |-------------------------|----------|---------|---------------------------|--------------------------------------------|
 | VERSION                 | yes      | 4.1.0   | Any version number        | Controls the version of installed software |
+| ATMOUSERNAME            | yes      |         | Username                  | The username of home directory to put files in |
