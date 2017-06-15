@@ -2,7 +2,7 @@
 
 Installs [Hotspot](https://github.com/rthurman/hotspot)
 
-[![Build Status](https://travis-ci.org/calvinmclean/hotspot-ansible.svg?branch=master)](https://travis-ci.org/calvinmclean/hotspot-ansible)
+[![Build Status](https://travis-ci.org/CyVerse-Ansible/hotspot-ansible.svg?branch=master)](https://travis-ci.org/CyVerse-Ansible/hotspot-ansible)
 
 ### Role Variables
 
